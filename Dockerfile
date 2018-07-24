@@ -23,7 +23,7 @@ RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubunt
 RUN apt-get update && apt-get upgrade -y
 
 # Install required software and set locales
-RUN apt-get install -y docker-ce azure-cli rake php-cli byobu zsh git-core openvpn ansible pwgen vim yarn curl locales && rm -rf /var/lib/apt/lists/* \
+RUN apt-get install -y docker-ce azure-cli rake php-cli byobu zsh git-core ansible pwgen vim yarn curl locales && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 
