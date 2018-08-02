@@ -29,7 +29,7 @@ In my case this is:
 And I found it to be useful to also mount the the Docker socket, so that I can build and run images and containers within my environment.
 
 ```
-docker run -v ~/.ssh:/root/.ssh:ro -v ~/.docker:/root/.docker:ro -v ~/projects:/projects -v /var/run/docker.sock:/var/run/docker.sock -it fanatique/cli-env:latest
+docker run -v ~/.ssh:/root/.ssh -v ~/.docker:/root/.docker:ro -v ~/projects:/projects -v /var/run/docker.sock:/var/run/docker.sock -it fanatique/cli-env:latest
 ```
 
 ## What Else?
