@@ -40,10 +40,13 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.s
 # Install janus for vim
 RUN curl -L https://bit.ly/janus-bootstrap | bash
 
+# Install oh my zsh
+RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+
+
 # Install node LTS
 RUN [ -s "/root/.nvm/nvm.sh" ] && \. "/root/.nvm/nvm.sh" && nvm install --lts
 
-# Install oh my zsh
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+RUN echo "export NVM_DIR=\"$HOME/.nvm\"\n[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"\n[ -s \"$NVM_DIR/bash_completion\" ] && \\. \"$NVM_DIR/bash_completion\"" >> /root/.zshrc
 
 CMD ["zsh"]
