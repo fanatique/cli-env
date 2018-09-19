@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 # Prepare installations
-RUN apt-get update && apt-get install -y gnupg curl apt-transport-https lsb-release dirmngr software-properties-common tzdata wget ca-certificates
+RUN apt-get update && apt-get install -y gnupg curl apt-transport-https lsb-release dirmngr build-essential software-properties-common tzdata wget ca-certificates
 
 # Set timezone
 RUN ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime
