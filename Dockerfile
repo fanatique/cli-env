@@ -27,7 +27,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 RUN apt-get update && apt-get upgrade -y
 
 # Install required software and set locales
-RUN apt-get install -y docker-ce azure-cli rake php-cli byobu zsh git-core ansible pwgen vim yarn curl locales && rm -rf /var/lib/apt/lists/* \
+RUN apt-get install -y docker-ce azure-cli inetutils-ping wget rake php-cli byobu zsh git-core ansible pwgen vim yarn curl locales && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 ENV LANG en_US.utf8
 
