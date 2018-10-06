@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 # Prepare installations
-RUN apt-get update && apt-get install -y gnupg curl apt-transport-https lsb-release dirmngr build-essential software-properties-common tzdata wget ca-certificates
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y gnupg curl apt-transport-https lsb-release dirmngr build-essential software-properties-common tzdata wget ca-certificates
 
 # Set timezone
 RUN ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime
@@ -20,8 +20,8 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 # Add Yarn repository
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
 # Upgrade system
 RUN apt-get update && apt-get upgrade -y
@@ -45,8 +45,8 @@ RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -
 
 
 # Install node LTS
-RUN [ -s "/root/.nvm/nvm.sh" ] && \. "/root/.nvm/nvm.sh" && nvm install --lts
+RUN [ -s "/root/.nvm/nvm.sh" ] && \. "/root/.nvm/nvm.sh" && nvm install stable
 
-RUN echo "export NVM_DIR=\"$HOME/.nvm\"\n[ -s \"$NVM_DIR/nvm.sh\" ] && \. \"$NVM_DIR/nvm.sh\"\n[ -s \"$NVM_DIR/bash_completion\" ] && \\. \"$NVM_DIR/bash_completion\"" >> /root/.zshrc
+RUN echo "export NVM_DIR=\"\$HOME/.nvm\"\n[ -s \"\$NVM_DIR/nvm.sh\" ] && \. \"\$NVM_DIR/nvm.sh\"\n[ -s \"\$NVM_DIR/bash_completion\" ] && \\. \"\$NVM_DIR/bash_completion\"" >> /root/.zshrc
 
 CMD ["zsh"]
