@@ -8,8 +8,7 @@ RUN ln -fs /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 # Add ansible repo
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
-RUN apt-add-repository "deb http://ppa.launchpad.net/ansible/ansible/ubuntu artful main"
+RUN apt-add-repository --yes --update ppa:ansible/ansible
 
 # Add azure cli repository
 RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/azure-cli.list
